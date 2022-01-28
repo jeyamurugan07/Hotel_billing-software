@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>web</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<style>
+body {
+     font-family: "Lato", sans-serif;
+}
+
+.navbar {
+  width: 100%;
+  background-color: #f34343;
+  overflow: auto;
+}
+.navbar a {
+  float: right;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+
+}
+
+.navbar a:hover {
+  background-color: #000000;
+}
+
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
+}
+</style>
+
+<body>
+<div class="navbar">
+  <a href="#"><i class="fa fa-fw fa-user"></i> Logout</a>
+    <a href="#"><i class="fa fa-fw fa-envelope"></i> Admin</a>
+    <a href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+</div>
+<br><br>
+<div>
+    <!-- {{ result }} -->
+
+   
+    <table class="table">
+    <thead>
+
+    <tr>
+        <th>no</th>
+        <th>itemname </th>
+        <th>itemcode</th>
+        <th>rate</th>
+        <th>quantity</th>
+        <th>amount</th>
+    </tr>
+    </thead>
+    <tbody>
+  
+    <tr>
+
+        <td><input type="text"  name="no"  id="no" value=""></td>
+        <td><input type="text" name="itemname" id="itemname"  value=""></td>
+        <td><input type="text"  name="itemcode" id="itemcode" value=""></td>
+        <td><input type="text"  name="rate"     id ="rate"  value=""></td>
+        <td><input type="text"  name="quantity" id="quantity" onkeyup="myFunction()" ></td>
+        <td><input type="text"  name="amount"   id="amount"  disabled></td>
+    </tr>
+ 
+    </tbody>
+</table>
+
+
+</div>
+<div style="float: right">
+<h3>Total:<input type="text"  id="total" ></h3>
+     <input  type="submit"  onclick="window.print()"  class="btn btn-info" value="print">
+   
+</div>
+
+
+
+
+<script
+        src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbwT2tbbQ97B53yJnYU3WhH/C8ycbRAKjpDc="
+        crossorigin="anonymous"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+
+
+        <script type="text/javascript">
+        
+          $(document).ready(function(){
+            var result=JSON.parse("{{ result | escapejs }}");
+            console.log(result)
+            console.log(result[0][1])
+            // console.log(index)
+            document.getElementById('itemcode').onkeyup=(e)=>{
+              var myObj = this.result;
+              // console.log(result[0].no)
+             
+                let selectedItem=result.find(result=>result[2] == e.target.value);
+                console.log(result[2])
+                console.log(selectedItem)
+                document.getElementById('no').value=selectedItem[0];
+                document.getElementById('itemname').value=selectedItem[1];
+                document.getElementById('rate').value=selectedItem[3];
+            }
+
+          });
+//          function add(result){
+//          var ab, ac, ad;
+//          ab = result;
+//          ac = result;
+//          ad = result;
+//          document.getElementById('no').value = ab;
+//          document.getElementById('item').value = ac;
+//          document.getElementById('rate').value =  ad;
+//  }
+         
+         function myFunction() {
+           var x = parseInt(document.getElementById("rate").value);
+           var y = parseInt(document.getElementById("quantity").value)
+           document.getElementById("amount").value = x * y;
+           document.getElementById("total").value = x * y;
+         }
+         
+         
+         </script>
+
+
+
+</body>
+</html>

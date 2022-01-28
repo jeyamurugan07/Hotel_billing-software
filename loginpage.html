@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+        .abc{
+            background-color: #dceeed;
+            margin-left:300px;
+            margin-right: 300px;
+            margin-top: 300px;
+        }
+    </style>
+<body>
+
+<center class="abc">
+    <h2>Hotel Name</h2>
+<form action="{% url 'loginpage' %}" method="post">
+    {% csrf_token %}
+    <label for="username"> username:</label><input type="text" class="form-control" name="username"
+                                                   placeholder="username" ><br><br>
+       <label for="username"> password:</label><input type="password" name="password" class="form-control"
+                                                      placeholder="password"><br><br>
+    <input type="submit" class="btn btn-info" value="login">
+
+</form>
+ 
+</center>
+
+
+</body>
+</html>

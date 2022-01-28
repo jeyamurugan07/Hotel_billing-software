@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>web</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+body {
+     font-family: "Lato", sans-serif;
+}
+.navbar {
+  width: 100%;
+  background-color: #f34343;
+  overflow: auto;
+}
+.navbar a {
+  float: right;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+}
+.navbar a:hover {
+  background-color: #000000;
+}
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+  }
+}
+</style>
+<body>
+<div class="navbar">
+  <a href="#"><i class="fa fa-fw fa-user"></i> Logout</a>
+    <a href="#"><i class="fa fa-fw fa-envelope"></i> Admin</a>
+    <a href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+</div>
+<br><br>
+<div>
+<table class="table" >
+  
+    <thead>
+    <tr>
+        <th>no</th>
+        <th>itemname</th>
+        <th>itemcode</th>
+        <th>rate</th>
+        <th>quantity</th>
+        <th>amount</th>
+        <th>action</th>
+    </tr>
+</thead>
+    <tbody>
+   {% for row in data %}
+    <tr>
+       <td id="no" name="no">{{ row.0 }}</td>
+       <td id="itemname" name="itemname">{{ row.1}}</td>
+        <td id="itemcode" name="itemcode">{{ row.2 }}</td>
+       <td id="rate" name="rate">{{ row.3 }}</td>
+       <td id="quantity"name="quantity">{{ row.4 }}</td>
+       <td id="amount" name="amount">{{ row.5}}</td>
+       <td><a href="/delete/{{ row.0 }}" class="btn btn-success
+        btn-xs" onclick="return confirm('Delete?')">Delete</a></td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+</div>
+</body>
+</html>
